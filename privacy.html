@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audis Privacy Policy</title>
+    <style>
+        body {
+            font-family: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
+            font-weight: normal;
+        }
+
+        .container {
+            max-width: 60rem;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 id="privacy-policy">Privacy Policy</h1>
+        <p><strong>Audis</strong> Last updated: February 15, 2026</p>
+        <h2 id="overview">Overview</h2>
+        <p>Audis is an iOS app that helps you rediscover albums from your Apple
+            Music library that were added on the same day in previous years. This
+            privacy policy explains what data the app accesses, how it is used, and
+            how it is stored.</p>
+        <h2 id="data-we-access">Data We Access</h2>
+        <h3 id="apple-music-library">Apple Music Library</h3>
+        <p>The app requests access to your Apple Music library through Apple’s
+            MusicKit framework. This access is used solely to:</p>
+        <ul>
+            <li>Read which albums are in your library and when they were added</li>
+            <li>Display album artwork, titles, artist names, and track listings</li>
+            <li>Show listening statistics (play counts, last played dates)</li>
+        </ul>
+        <p>Your Apple Music library data is never transmitted to any external
+            server. It is only used locally on your device to display your “on this
+            day” albums.</p>
+        <h3 id="location-data">Location Data</h3>
+        <p>The app may request access to your location for the Map feature.
+            Location access is used solely to:</p>
+        <ul>
+            <li>Center the map on your current position when viewing location-tagged
+                albums</li>
+        </ul>
+        <p>Location access is optional and the app functions fully without it.
+            The app never tracks or records your device location.</p>
+        <p>You may also manually assign geographic locations to albums using the
+            location picker. These user-assigned album locations are stored as
+            coordinates in your iCloud account (see Data Storage below).</p>
+        <h2 id="data-we-store">Data We Store</h2>
+        <h3 id="local-cache">Local Cache</h3>
+        <p>The app maintains a local cache of album identifiers and their added
+            dates on your device. This cache is used to quickly filter albums by
+            date without needing to re-query your full library each time. This data
+            stays on your device and is not synced to any cloud service.</p>
+        <h3 id="icloud-sync-cloudkit">iCloud Sync (CloudKit)</h3>
+        <p>The app stores the following user-created data in your personal
+            iCloud account via Apple’s CloudKit:</p>
+        <ul>
+            <li><strong>Album notes</strong>: Text notes you write about albums</li>
+            <li><strong>Album locations</strong>: Geographic coordinates you assign
+                to albums via the location picker</li>
+        </ul>
+        <p>This data is synced across your Apple devices signed into the same
+            iCloud account. It is stored in your private CloudKit database, meaning
+            only you can access it. The developer has no access to your CloudKit
+            data.</p>
+        <h3 id="user-preferences">User Preferences</h3>
+        <p>The app stores minimal preferences locally on your device (e.g.,
+            appearance setting, last refresh timestamp) using standard iOS storage.
+            These are not synced or transmitted.</p>
+        <h2 id="data-we-do-not-collect">Data We Do Not Collect</h2>
+        <ul>
+            <li>The app does <strong>not</strong> collect any personal
+                information</li>
+            <li>The app does <strong>not</strong> use any analytics or tracking
+                frameworks</li>
+            <li>The app does <strong>not</strong> contain any advertising</li>
+            <li>The app does <strong>not</strong> transmit any data to the developer
+                or any third party</li>
+            <li>The app does <strong>not</strong> create user accounts or require
+                sign-in (beyond your existing iCloud account for sync)</li>
+        </ul>
+        <h2 id="third-party-services">Third-Party Services</h2>
+        <p>The app uses only first-party Apple frameworks:</p>
+        <ul>
+            <li><strong>MusicKit</strong> for Apple Music library access</li>
+            <li><strong>CloudKit</strong> for iCloud data sync</li>
+            <li><strong>MapKit</strong> for map display and place search</li>
+        </ul>
+        <p>No third-party SDKs, analytics tools, or advertising networks are
+            included in the app.</p>
+        <h2 id="data-retention-and-deletion">Data Retention and Deletion</h2>
+        <ul>
+            <li><strong>Local cache</strong>: Cleared automatically when you delete
+                the app</li>
+            <li><strong>iCloud data (notes and locations)</strong>: Stored in your
+                iCloud account. You can delete individual notes and locations within the
+                app. All app data is removed from iCloud when you delete the app,
+                subject to Apple’s standard iCloud data retention policies</li>
+            <li><strong>User preferences</strong>: Cleared when you delete the
+                app</li>
+        </ul>
+        <h2 id="childrens-privacy">Children’s Privacy</h2>
+        <p>The app does not knowingly collect any personal information from
+            children. The app does not collect personal information from any
+            user.</p>
+        <h2 id="changes-to-this-policy">Changes to This Policy</h2>
+        <p>If this privacy policy is updated, the changes will be reflected in
+            the “Last updated” date above.</p>
+        <h2 id="contact">Contact</h2>
+        <p>If you have questions about this privacy policy, please open an issue
+            at: https://github.com/chadluo/audis/issues</p>
+    </div>
+</body>
+
+</html>
