@@ -5,10 +5,157 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Audis</title>
+    <style>
+        html {
+            color-scheme: light dark;
+        }
+
+        body {
+            background: Canvas;
+            color: CanvasText;
+        }
+
+        @media (min-width: 900px) {
+            html {
+                font-size: 18px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            html {
+                font-size: 20px;
+            }
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, sans-serif;
+            font-weight: normal;
+        }
+
+        .screen {
+            display: grid;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .phone {
+            aspect-ratio: 9/16;
+            max-height: 45rem;
+            min-height: 35rem;
+            margin: auto;
+            overflow-y: auto;
+            padding-right: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .message {
+            padding: .5lh;
+            border-radius: 0.25lh;
+            width: fit-content;
+            max-width: 66%;
+            text-box-edge: cap alphabetic;
+            text-box-trim: trim-both;
+        }
+
+        .message.me {
+            background: rgba(128, 128, 128, 0.2);
+            align-self: end;
+            border-bottom-right-radius: 0;
+        }
+
+        .message.other {
+            background: rgba(255, 0, 0, 0.5);
+            border-bottom-left-radius: 0;
+        }
+    </style>
 </head>
 
 <body>
-    Audis
+    <div class="screen">
+        <div class="phone" />
+    </div>
+
+    <script>
+        // @ts-check
+        'use strict';
+
+        /** @type {{ text: string, side: 'me' | 'other' }[]} */
+        const messages = [
+            { text: "Yo", side: "me" },
+            { text: "You wrote this?", side: "me" },
+            { text: "ah yes", side: "other" },
+            { text: "with the power of vibe", side: "other" },
+            { text: "cool, so what is it", side: "me" },
+            { text: "a music player?", side: "me" },
+            { text: "no, it only views your music library but doesn't play", side: "other" },
+            { text: "remember there were photo apps telling you what photos you took on the same day? or place check-in apps showing places you visit", side: "other" },
+            { text: "this is similar to that, but for your music library", side: "other" },
+            { text: "like those end of year rewraps?", side: "me" },
+            { text: "yeah like rewrap, but on any day not waiting until year end", side: "other" },
+            { text: "Oh ok, got it", side: "me" },
+            { text: "wait it's added, not listened?", side: "me" },
+            { text: "no not listen history", side: "other" },
+            { text: "I had a look but apple music API doesn't keep a lot of it", side: "other" },
+            { text: "like it only has very recent listening history, not last year two three years ago", side: "other" },
+            { text: "so it's only when you add it to your library", side: "other" },
+            { text: "when you click the plus button?", side: "me" },
+            { text: "yes", side: "other" },
+            { text: "So it doesn't know if I only added it to the library but never listened to it?", side: "me" },
+            { text: "it doesn't care", side: "other" },
+            { text: "when you click into the album it shows how much time you have listened to it in total at bottom", side: "other" },
+            { text: "so you still have some clue", side: "other" },
+            { text: "sounds fine, but only for added on today?", side: "me" },
+            { text: "also yesterday", side: "other" },
+            { text: "ok, but can I check any day?", side: "me" },
+            { text: "no", side: "other" },
+            { text: "I mean you can change your phone date time to see different days", side: "other" },
+            { text: "but I don't want to do the date picker", side: "other" },
+            { text: "what if I want to check 29/2? do I wait four years?", side: "me" },
+            { text: "I have specific logic for that day, you can see it on 28/2 and 1/3", side: "other" },
+            { text: "it's my first time actually do leap year check logic in prod 🤣", side: "other" },
+            { text: "hahaha 4 100 400s nice", side: "me" },
+            { text: "What does the notes and maps do?", side: "me" },
+            { text: "it's for you to keep your own notes and landmarks with an album", side: "other" },
+            { text: "does it get where the album is released?", side: "me" },
+            { text: "no", side: "other" },
+            { text: "it's probably released globally so doesn't make sense right", side: "other" },
+            { text: "oh yes", side: "me" },
+            { text: "or where Shazam recognized it?", side: "me" },
+            { text: "you mark your own place for example where you listened to it", side: "other" },
+            { text: "oh wait Shazam", side: "other" },
+            { text: "I mean I only get the information from Apple Music, and Shazam is a different framework", side: "other" },
+            { text: "I'll need to cross reference and find the info", side: "other" },
+            { text: "and that would be quite some work", side: "other" },
+            { text: "seems the location is only within Shazam not in Apple Music", side: "me" },
+            { text: "so the app is always about albums but Shazam recognizes tracks?", side: "me" },
+            { text: "yep it's part of the question, doesn't mean you can't link them", side: "other" },
+            { text: "but anyway the place is intended to be selected by yourself, and would be different if the app prefills it for you", side: "other" },
+            { text: "sounds fair", side: "me" },
+            { text: "so it works best when your entire music library is on apple", side: "me" },
+            { text: "yes", side: "other" },
+            { text: "I mean I have been using apple music since day one and this is more of for what I want to have", side: "other" },
+            { text: "like sometimes you don't want new music you just want old music", side: "other" },
+            { text: "maybe something you haven't listened to recently but in some meaningful order not always by artists or albums a-z or play count", side: "other" },
+            { text: "for example you added it on release date so it's naturally anniversary", side: "other" },
+            { text: "yeah interesting idea but when you explain it still feels curmudgeon", side: "me" },
+            { text: "🤷", side: "me" },
+            { text: "fuck", side: "other" },
+            { text: "yes", side: "other" },
+            { text: "but fuck", side: "other" },
+            { text: "anyway I can still add new features let me know what you think", side: "other" },
+            { text: "ok sure, have a great one!", side: "me" },
+        ]
+
+        const scrollEl = /** @type {HTMLElement | null} */ (document.querySelector('.phone'))
+        if (scrollEl) {
+            scrollEl.innerHTML = messages.map(message => {
+                return `<div class="message ${message.side}">${message.text}</div>`
+            }).join('')
+        }
+    </script>
 </body>
 
 </html>
