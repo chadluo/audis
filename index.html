@@ -44,8 +44,8 @@
             }
 
             .phone {
-                max-height: 50rem;
-                max-width: 25rem;
+                height: 50rem;
+                width: 25rem;
             }
         }
 
@@ -53,7 +53,7 @@
             padding: .5lh;
             border-radius: 0.25lh;
             width: fit-content;
-            max-width: 66%;
+            max-width: 75%;
             text-box-edge: cap alphabetic;
             text-box-trim: trim-both;
         }
@@ -152,6 +152,17 @@
             scrollEl.innerHTML = messages.map(message => {
                 return `<div class="message ${message.side}">${message.text}</div>`
             }).join('')
+
+            scrollEl.querySelectorAll('.message').forEach(el => {
+                const range = document.createRange()
+                range.selectNodeContents(el)
+                const rects = range.getClientRects()
+                if (rects.length > 1) {
+                    const maxLineWidth = Math.max(...Array.from(rects, r => r.width));
+                    /** @type {HTMLElement} */
+                    (el).style.width = Math.ceil(maxLineWidth) + 'px'
+                }
+            })
         }
     </script>
 </body>
