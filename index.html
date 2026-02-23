@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Audis</title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         html {
             color-scheme: light dark;
         }
@@ -14,6 +18,7 @@
             margin: 0;
             background: Canvas;
             color: CanvasText;
+
             font-size: 18px;
             font-family: system-ui, sans-serif;
             font-weight: normal;
@@ -26,34 +31,19 @@
         }
 
         .phone {
-            margin: auto;
-            padding: 1rem;
+            max-width: 30em;
+            margin: 0 auto;
+            padding: clamp(1rem, 5vw, 6rem) 1rem;
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
-            overflow-y: auto;
-        }
-
-        @media (min-width: 600px) {
-            .screen {
-                height: 100dvh;
-
-                display: grid;
-                overflow: hidden;
-                place-items: center;
-            }
-
-            .phone {
-                height: 50rem;
-                width: 25rem;
-            }
         }
 
         .message {
+            max-width: 20em;
             padding: .5lh;
             border-radius: 0.25lh;
             width: fit-content;
-            max-width: 75%;
             text-box-edge: cap alphabetic;
             text-box-trim: trim-both;
         }
@@ -72,9 +62,7 @@
 </head>
 
 <body>
-    <div class="screen">
-        <div class="phone" />
-    </div>
+    <div class="phone" />
 
     <script>
         // @ts-check
@@ -161,7 +149,7 @@
                 if (rects.length > 1) {
                     const maxLineWidth = Math.max(...Array.from(rects, r => r.width));
                     /** @type {HTMLElement} */
-                    (el).style.width = Math.ceil(maxLineWidth) + 'px'
+                    (el).style.maxWidth = Math.ceil(maxLineWidth) + 'px'
                 }
             })
         }
