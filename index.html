@@ -40,7 +40,7 @@
         }
 
         .message {
-            max-width: 20em;
+            max-width: 24em;
             padding: .5lh;
             border-radius: 0.25lh;
             width: fit-content;
@@ -58,6 +58,16 @@
             background: rgba(255, 0, 0, 0.5);
             border-bottom-left-radius: 0;
         }
+
+        .message:has(a) {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .message a {
+            color: LinkText;
+        }
     </style>
 </head>
 
@@ -68,9 +78,12 @@
         // @ts-check
         'use strict';
 
+        const appStoreUrl = "https://apps.apple.com/us/app/audis/id6759209950"
+
         /** @type {{ text: string, side: 'me' | 'other' }[]} */
         const messages = [
             { text: "Yo", side: "me" },
+            { text: `<a href='${appStoreUrl}'>https://apps.apple.com/us/app/audis/id6759209950</a>`, side: "me" },
             { text: "You wrote this?", side: "me" },
             { text: "ah yes", side: "other" },
             { text: "with the power of vibe", side: "other" },
@@ -149,7 +162,7 @@
                 if (rects.length > 1) {
                     const maxLineWidth = Math.max(...Array.from(rects, r => r.width));
                     /** @type {HTMLElement} */
-                    (el).style.maxWidth = Math.ceil(maxLineWidth) + 'px'
+                    (el).style.maxWidth = `min(100%, ${Math.ceil(maxLineWidth)}px)`
                 }
             })
         }
